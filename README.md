@@ -37,6 +37,7 @@ A powerful Telegram bot that automatically renames, cleans, and uploads files wi
    - `ADMIN`: Comma-separated admin IDs (e.g., `123,456`).
    - `DB_URL`: Your MongoDB URL.
    - `DB_NAME`: Your MongoDB Database Name.
+   - `IS_PUBLIC`: Set to `True` to allow all users by default (optional).
 
 3. Build and run:
    ```bash

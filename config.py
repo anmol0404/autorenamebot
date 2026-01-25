@@ -45,6 +45,7 @@ class Config(object):
     
     # wes response configuration     
     WEB_SUPPORT = bool(os.environ.get("WEB_SUPPORT", "True"))
+    IS_PUBLIC = bool(os.environ.get("IS_PUBLIC", "False").lower() == "true")
 
 
 
