@@ -8,15 +8,21 @@ A powerful Telegram bot that automatically renames, cleans, and uploads files wi
 - **Tag Removal**: Automatically removes unwanted tags and @mentions from filenames and captions.
 - **Extension Preservation**: Cleans files while keeping their original extensions (like `.mkv`, `.mp4`).
 - **Automatic Cleanup**: Background task deletes files/folders in `downloads/` older than 6 hours to save disk space.
+- **Admin-Only Access**: Restricted to authorized IDs by default (comma-separated IDs supported in `.env`).
+- **Public Mode Toggle**: Admins can open the bot to all users using the `/public` command.
 - **Configurable Upload Type**: Set your default preference between **Document** and **Video**.
 - **Custom Thumbnails & Captions**: Full support for persistent custom thumbnails and caption templates.
 
 ## 🛠 Commands
 - `/start` - Start the bot.
+- `/public [on|off]` - (Admin Only) Toggle bot access for all users.
 - `/set_type [document|video]` - Set your default upload preference.
 - `/view_type` - Check your current upload mode.
-- `/set_caption [text]` - Set a global caption template.
-- `/set_thumb` - Send a photo followed by `/set_thumb` to save it.
+- `/set_caption [text]` - Set a global caption template (supports `{filename}`, `{filesize}`, `{duration}`).
+- `/see_caption` - View your saved caption.
+- `/del_caption` - Delete your custom caption.
+- `/view_thumb` - View your saved thumbnail.
+- `/del_thumb` - Delete your saved thumbnail.
 
 ## 🚀 Deployment (Docker)
 1. Clone the repo:
@@ -28,10 +34,9 @@ A powerful Telegram bot that automatically renames, cleans, and uploads files wi
    - `API_ID`: Your Telegram API ID.
    - `API_HASH`: Your Telegram API HASH.
    - `BOT_TOKEN`: Your Bot Token from @BotFather.
+   - `ADMIN`: Comma-separated admin IDs (e.g., `123,456`).
    - `DB_URL`: Your MongoDB URL.
    - `DB_NAME`: Your MongoDB Database Name.
-   - `ADMIN`: Your Telegram User ID (for admin access).
-   - `LOG_CHANNEL`: ID of the channel where bot logs will be sent.
 
 3. Build and run:
    ```bash
@@ -39,4 +44,4 @@ A powerful Telegram bot that automatically renames, cleans, and uploads files wi
    ```
 
 ## 📜 Credits
-Based on the @PYRO_BOTZ rename bot, modified for full automation.
+Based on the @PYRO_BOTZ rename bot, modified for full automation and advanced security.
