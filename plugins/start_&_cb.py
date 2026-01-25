@@ -27,9 +27,10 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply, CallbackQuery
 from helper.database import db
 from config import Config, Txt  
+from helper.user_filter import admin_only
   
 
-@Client.on_message(filters.private & filters.command("start"))
+@Client.on_message(filters.private & admin_only & filters.command("start"))
 async def start(client, message):
     user = message.from_user
     await db.add_user(client, message)                
@@ -48,7 +49,7 @@ async def start(client, message):
         await message.reply_text(text=Txt.START_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)
    
 
-@Client.on_callback_query()
+@Client.on_callback_query(admin_only)
 async def cb_handler(client, query: CallbackQuery):
     data = query.data 
     if data == "start":

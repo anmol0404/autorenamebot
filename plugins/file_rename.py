@@ -16,7 +16,9 @@ from PIL import Image
 import os, time
 
 
-@Client.on_message(filters.private & (filters.document | filters.audio | filters.video))
+from helper.user_filter import admin_only
+
+@Client.on_message(filters.private & admin_only & (filters.document | filters.audio | filters.video))
 async def rename_handler(client, message):
     file = getattr(message, message.media.value)
     filename = file.file_name  
