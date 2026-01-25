@@ -4,7 +4,8 @@ from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from config import Config
 from aiohttp import web
-import os
+from helper.cleanup import cleanup_old_files
+import os, asyncio
 
 class Bot(Client):
     def __init__(self):
@@ -29,6 +30,9 @@ class Bot(Client):
             app = web.AppRunner(web.Application(client_max_size=30000000))
             await app.setup()
             await web.TCPSite(app, "0.0.0.0", 8080).start()
+            
+        # Start background cleanup task
+        asyncio.create_task(cleanup_old_files("downloads"))
             
         print(f"\033[1;96m @{me.username} Sᴛᴀʀᴛᴇᴅ......⚡️⚡️⚡️\033[0m")
         try: [await self.send_message(id, f"**__{me.first_name}  Iꜱ Sᴛᴀʀᴛᴇᴅ.....✨️__**") for id in Config.ADMIN]                              

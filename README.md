@@ -7,6 +7,7 @@ A powerful Telegram bot that automatically renames, cleans, and uploads files wi
 - **Smart Cleaning**: Automatically replaces dots (`.`), hyphens (`-`), and underscores (`_`) with spaces in filenames.
 - **Tag Removal**: Automatically removes unwanted tags and @mentions from filenames and captions.
 - **Extension Preservation**: Cleans files while keeping their original extensions (like `.mkv`, `.mp4`).
+- **Automatic Cleanup**: Background task deletes files/folders in `downloads/` older than 6 hours to save disk space.
 - **Configurable Upload Type**: Set your default preference between **Document** and **Video**.
 - **Custom Thumbnails & Captions**: Full support for persistent custom thumbnails and caption templates.
 
