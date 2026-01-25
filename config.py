@@ -37,7 +37,7 @@ class Config(object):
     # other configs
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "")
-    ADMIN       = [int(admin) if id_pattern.search(admin.strip()) else admin.strip() for admin in os.environ.get('ADMIN', '').split(',')]
+    ADMIN       = [int(admin.strip()) for admin in re.split(r'[, ]+', os.environ.get('ADMIN', '')) if admin.strip().replace('-', '').isdigit()]
     FORCE_SUB   = os.environ.get("FORCE_SUB", "") 
     JOIN_CHANNEL = os.environ.get("JOIN_CHANNEL", "")
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
