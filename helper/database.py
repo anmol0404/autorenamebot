@@ -65,6 +65,13 @@ class Database:
         user = await self.col.find_one({'_id': int(id)})
         return user.get('upload_mode', "document")
 
+    async def set_config(self, key, value):
+        await self.db.settings.update_one({'_id': key}, {'$set': {'value': value}}, upsert=True)
+
+    async def get_config(self, key, default=None):
+        doc = await self.db.settings.find_one({'_id': key})
+        return doc.get('value', default) if doc else default
+
 
 db = Database(Config.DB_URL, Config.DB_NAME)
 

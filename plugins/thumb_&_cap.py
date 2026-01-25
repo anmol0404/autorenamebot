@@ -94,4 +94,21 @@ async def delete_type(client, message):
     await db.set_upload_mode(message.from_user.id, mode="document")
     await message.reply_text("__**❌️ Uᴩʟᴏᴀᴅ Tyᴩᴇ Rᴇꜱᴇᴛ Tᴏ Dᴏᴄᴜᴍᴇɴᴛ**__")
 
+@Client.on_message(filters.private & filters.user(Config.ADMIN) & filters.command('public'))
+async def toggle_public(client, message):
+    if len(message.command) == 1:
+        is_public = await db.get_config('is_public', False)
+        status = "Enabled" if is_public else "Disabled"
+        return await message.reply_text(f"**Cᴜʀʀᴇɴᴛ Pᴜʙʟɪᴄ Mᴏᴅᴇ:** `{status}`\n\nUꜱᴇ `/public on` Oʀ `/public off` Tᴏ Cʜᴀɴɢᴇ.")
+    
+    mode = message.text.split(" ", 1)[1].lower()
+    if mode == "on":
+        await db.set_config('is_public', True)
+        await message.reply_text("**✅ Pᴜʙʟɪᴄ Mᴏᴅᴇ Eɴᴀʙʟᴇᴅ! Aʟʟ Uꜱᴇʀꜱ Cᴀɴ Nᴏᴡ Uꜱᴇ Tʜᴇ Bᴏᴛ.**")
+    elif mode == "off":
+        await db.set_config('is_public', False)
+        await message.reply_text("**❌ Pᴜʙʟɪᴄ Mᴏᴅᴇ Dɪꜱᴀʙʟᴇᴅ! Oɴʟy Aᴅᴍɪɴꜱ Cᴀɴ Uꜱᴇ Tʜᴇ Bᴏᴛ.**")
+    else:
+        await message.reply_text("**❌️ Iɴᴠᴀʟɪᴅ Mᴏᴅᴇ! Uꜱᴇ `on` Oʀ `off`**")
+
 
