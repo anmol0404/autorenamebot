@@ -24,7 +24,15 @@ A powerful Telegram bot that automatically renames, cleans, and uploads files wi
    git clone https://github.com/anmol0404/autorenamebot.git
    cd autorenamebot
    ```
-2. Create and fill `.env` file.
+2. Create a `.env` file based on `.env.sample` and fill in your details:
+   - `API_ID`: Your Telegram API ID.
+   - `API_HASH`: Your Telegram API HASH.
+   - `BOT_TOKEN`: Your Bot Token from @BotFather.
+   - `DB_URL`: Your MongoDB URL.
+   - `DB_NAME`: Your MongoDB Database Name.
+   - `ADMIN`: Your Telegram User ID (for admin access).
+   - `LOG_CHANNEL`: ID of the channel where bot logs will be sent.
+
 3. Build and run:
    ```bash
    docker compose up -d --build
