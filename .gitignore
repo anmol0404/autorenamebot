@@ -1,0 +1,19 @@
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Session files
+*.session
+*.session-journal
+
+# Environment variables
+.env
+
+# Downloads and temporary files
+downloads/
+*.log
+
+# Docker
+.dockerignore
