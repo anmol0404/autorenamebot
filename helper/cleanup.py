@@ -27,7 +27,7 @@ async def cleanup_old_files(path, minutes=360): # 360 minutes = 6 hours
                             if os.path.isfile(item_path) or os.path.islink(item_path):
                                 os.unlink(item_path)
                                 logger.info(f"Deleted file/link: {item_path}")
-                            elif os.path.is_dir(item_path):
+                            elif os.path.isdir(item_path):
                                 shutil.rmtree(item_path)
                                 logger.info(f"Deleted directory: {item_path}")
                         except Exception as e:
