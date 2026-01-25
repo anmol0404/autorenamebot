@@ -1,5 +1,6 @@
 from pyrogram import filters
 from config import Config
+from helper.database import db
 
 async def admin_check(_, __, message):
     if not message.from_user:

@@ -1,4 +1,5 @@
 from pyrogram import Client, filters 
+from config import Config
 from helper.database import db
 from helper.user_filter import admin_only
 
