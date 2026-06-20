@@ -83,6 +83,41 @@ async def broadcast_handler(bot: Client, m: Message):
     completed_in = datetime.timedelta(seconds=int(time.time() - start_time))
     await sts_msg.edit(f"Bʀᴏᴀᴅᴄᴀꜱᴛ Cᴏᴍᴩʟᴇᴛᴇᴅ: \nCᴏᴍᴩʟᴇᴛᴇᴅ Iɴ `{completed_in}`.\n\nTᴏᴛᴀʟ Uꜱᴇʀꜱ {total_users}\nCᴏᴍᴩʟᴇᴛᴇᴅ: {done} / {total_users}\nSᴜᴄᴄᴇꜱꜱ: {success}\nFᴀɪʟᴇᴅ: {failed}")
            
+@Client.on_message(filters.command("addadmin") & filters.private & filters.user(Config.ADMIN))
+async def add_admin_cmd(bot, message):
+    if len(message.command) < 2:
+        return await message.reply("Usage: `/addadmin <user_id>`")
+    try:
+        user_id = int(message.command[1])
+        if await db.add_admin(user_id):
+            await message.reply(f"✅ `{user_id}` added as admin!")
+        else:
+            await message.reply(f"`{user_id}` is already an admin.")
+    except:
+        await message.reply("Invalid user ID.")
+
+@Client.on_message(filters.command("removeadmin") & filters.private & filters.user(Config.ADMIN))
+async def remove_admin_cmd(bot, message):
+    if len(message.command) < 2:
+        return await message.reply("Usage: `/removeadmin <user_id>`")
+    try:
+        user_id = int(message.command[1])
+        if await db.remove_admin(user_id):
+            await message.reply(f"✅ `{user_id}` removed from admins.")
+        else:
+            await message.reply(f"`{user_id}` is not in admin list.")
+    except:
+        await message.reply("Invalid user ID.")
+
+@Client.on_message(filters.command("admins") & filters.private & filters.user(Config.ADMIN))
+async def list_admins_cmd(bot, message):
+    env_admins = Config.ADMIN
+    db_admins = await db.get_db_admins()
+    text = f"**📋 Env Admins:** `{env_admins}`\n"
+    text += f"**📋 DB Admins:** `{db_admins}`\n" if db_admins else "**📋 DB Admins:** None\n"
+    await message.reply(text)
+
+
 async def send_msg(user_id, message):
     try:
         await message.copy(chat_id=int(user_id))

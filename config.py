@@ -69,21 +69,30 @@ Mᴏᴅɪꜰɪᴇᴅ Bʏ : <a href='https://t.me/eywwi'>Aɴᴍᴏʟ</a> 💞</b>
 ╰───────────────⍟ """
 
     HELP_TXT = """
-🌌 <b><u>Hᴏᴡ Tᴏ Sᴇᴛ Tʜᴜᴍʙɴɪʟᴇ</u></b>
-  
-<b>•»</b> /start Tʜᴇ Bᴏᴛ Aɴᴅ Sᴇɴᴅ Aɴy Pʜᴏᴛᴏ Tᴏ Aᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟy Sᴇᴛ Tʜᴜᴍʙɴɪʟᴇ.
-<b>•»</b> /del_thumb Uꜱᴇ Tʜɪꜱ Cᴏᴍᴍᴀɴᴅ Tᴏ Dᴇʟᴇᴛᴇ Yᴏᴜʀ Oʟᴅ Tʜᴜᴍʙɴɪʟᴇ.
-<b>•»</b> /view_thumb Uꜱᴇ Tʜɪꜱ Cᴏᴍᴍᴀɴᴅ Tᴏ Vɪᴇᴡ Yᴏᴜʀ Cᴜʀʀᴇɴᴛ Tʜᴜᴍʙɴɪʟᴇ.
-📑 <b><u>Hᴏᴡ Tᴏ Sᴇᴛ Cᴜꜱᴛᴏᴍ Cᴀᴩᴛɪᴏɴ</u></b>
-<b>•»</b> /set_caption - Uꜱᴇ Tʜɪꜱ Cᴏᴍᴍᴀɴᴅ Tᴏ Sᴇᴛ ᴀ Cᴜꜱᴛᴏᴍ Cᴀᴩᴛɪᴏɴ
-<b>•»</b> /see_caption - Uꜱᴇ Tʜɪꜱ Cᴏᴍᴍᴀɴᴅ Tᴏ Vɪᴇᴡ Yᴏᴜʀ Cᴜꜱᴛᴏᴍ Cᴀᴩᴛɪᴏɴ
-<b>•»</b> /del_caption - Uꜱᴇ Tʜɪꜱ Cᴏᴍᴍᴀɴᴅ Tᴏ Dᴇʟᴇᴛᴇ Yᴏᴜʀ Cᴜꜱᴛᴏᴍ Cᴀᴩᴛɪᴏɴ
-Exᴀᴍᴩʟᴇ:- /set_caption 📕 Fɪʟᴇ Nᴀᴍᴇ: {filename}
-💾 Sɪᴢᴇ: {filesize}
-⏰ Dᴜʀᴀᴛɪᴏɴ: {duration}
-✏️ <b><u>Hᴏᴡ Tᴏ Rᴇɴᴀᴍᴇ A Fɪʟᴇ</u></b>
-<b>•»</b> Sᴇɴᴅ Aɴy Fɪʟᴇ Tʜᴇ Bᴏᴛ Wɪʟʟ Aᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟy Rᴇɴᴀᴍᴇ Iᴛ.
-ℹ️ <b>Aɴy Oᴛʜᴇʀ Hᴇʟᴩ Cᴏɴᴛᴀᴄᴛ :-</b> <a href=https://t.me/eywwi>Aɴᴍᴏʟ</a>
+🌌 <b><u>Usᴇʀ Cᴏᴍᴍᴀɴᴅꜱ</u></b>
+
+<b>• /start</b> - Start the bot
+<b>• /help</b> - Show all commands
+<b>• /set_caption</b> - Set custom caption
+<b>• /see_caption</b> - View your caption
+<b>• /del_caption</b> - Delete caption
+<b>• /del_thumb</b> - Delete your thumbnail
+<b>• /view_thumb</b> - View your thumbnail
+
+✏️ <b><u>Hᴏᴡ Tᴏ Rᴇɴᴀᴍᴇ</u></b>
+Send any file & type new file name.
+
+━━━━━━━━━━━━━━━━━━━━━━
+👑 <b><u>Adᴍɪɴ Cᴏᴍᴍᴀɴᴅꜱ</u></b>
+
+<b>• /stats</b> - Bot status & stats
+<b>• /restart</b> - Restart the bot
+<b>• /update</b> - Update from GitHub
+<b>• /broadcast</b> - Broadcast (reply to a msg)
+<b>• /addadmin</b> - Promote user to admin
+<b>• /removeadmin</b> - Demote admin
+<b>• /admins</b> - List all admins
+<b>• /toggle_public</b> - Toggle public mode
 """
 
 #⚠️ Dᴏɴ'ᴛ Rᴇᴍᴏᴠᴇ Oᴜʀ Cʀᴇᴅɪᴛꜱ @ᴩyʀᴏ_ʙᴏᴛᴢ🙏🥲

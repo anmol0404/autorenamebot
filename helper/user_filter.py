@@ -14,6 +14,10 @@ async def admin_check(_, __, message):
     if is_public:
         return True
         
-    return message.from_user.id in Config.ADMIN
+    if message.from_user.id in Config.ADMIN:
+        return True
+
+    db_admins = await db.get_db_admins()
+    return message.from_user.id in db_admins
 
 admin_only = filters.create(admin_check)

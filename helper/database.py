@@ -72,6 +72,25 @@ class Database:
         doc = await self.db.settings.find_one({'_id': key})
         return doc.get('value', default) if doc else default
 
+    async def add_admin(self, user_id):
+        admins = await self.get_config('admins', [])
+        if int(user_id) not in admins:
+            admins.append(int(user_id))
+            await self.set_config('admins', admins)
+            return True
+        return False
+
+    async def remove_admin(self, user_id):
+        admins = await self.get_config('admins', [])
+        if int(user_id) in admins:
+            admins.remove(int(user_id))
+            await self.set_config('admins', admins)
+            return True
+        return False
+
+    async def get_db_admins(self):
+        return await self.get_config('admins', [])
+
 
 db = Database(Config.DB_URL, Config.DB_NAME)
 

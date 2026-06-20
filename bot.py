@@ -1,3 +1,6 @@
+import asyncio
+asyncio.set_event_loop(asyncio.new_event_loop())
+
 from datetime import datetime
 from pytz import timezone
 from pyrogram import Client, __version__

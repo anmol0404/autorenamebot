@@ -30,6 +30,33 @@ from config import Config, Txt
 from helper.user_filter import admin_only
   
 
+@Client.on_message(filters.private & filters.command("help"))
+async def help_command(client, message):
+    user = message.from_user
+    is_admin = user.id in Config.ADMIN
+    if not is_admin:
+        db_admins = await db.get_db_admins()
+        is_admin = user.id in db_admins
+    if is_admin:
+        await message.reply_text(Txt.HELP_TXT, disable_web_page_preview=True)
+    else:
+        user_help = """
+🌌 <b><u>Usᴇʀ Cᴏᴍᴍᴀɴᴅꜱ</u></b>
+
+<b>• /start</b> - Start the bot
+<b>• /help</b> - Show all commands
+<b>• /set_caption</b> - Set custom caption
+<b>• /see_caption</b> - View your caption
+<b>• /del_caption</b> - Delete caption
+<b>• /del_thumb</b> - Delete your thumbnail
+<b>• /view_thumb</b> - View your thumbnail
+
+✏️ <b><u>Hᴏᴡ Tᴏ Rᴇɴᴀᴍᴇ</u></b>
+Send any file & type new file name.
+"""
+        await message.reply_text(user_help, disable_web_page_preview=True)
+
+
 @Client.on_message(filters.private & admin_only & filters.command("start"))
 async def start(client, message):
     user = message.from_user
