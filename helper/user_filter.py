@@ -1,6 +1,9 @@
 from pyrogram import filters
 from config import Config
 from helper.database import db
+import logging
+
+logger = logging.getLogger(__name__)
 
 async def admin_check(_, __, message):
     try:
@@ -19,7 +22,8 @@ async def admin_check(_, __, message):
 
         db_admins = await db.get_db_admins()
         return message.from_user.id in db_admins
-    except:
+    except Exception as e:
+        logger.error(f"admin_check error: {e}")
         return False
 
 admin_only = filters.create(admin_check)
