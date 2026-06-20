@@ -8,7 +8,7 @@ from pyrogram.raw.all import layer
 from config import Config
 from aiohttp import web
 from helper.cleanup import cleanup_old_files
-import os, asyncio
+import os
 
 class Bot(Client):
     def __init__(self):
