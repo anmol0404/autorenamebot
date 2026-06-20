@@ -23,6 +23,7 @@ License Link : https://github.com/TEAM-PYRO-BOTZ/PYRO-RENAME-BOT/blob/main/LICEN
 
 from config import Config
 from helper.database import db
+from helper.user_filter import admin_only
 from pyrogram.types import Message
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid
@@ -31,7 +32,7 @@ import os, sys, time, asyncio, logging, datetime
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
  
-@Client.on_message(filters.command(["stats", "status"]) & filters.user(Config.ADMIN))
+@Client.on_message(filters.command(["stats", "status"]) & admin_only)
 async def get_stats(bot, message):
     total_users = await db.total_users_count()
     uptime = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - bot.uptime))    
@@ -43,13 +44,13 @@ async def get_stats(bot, message):
 
 
 #Restart to cancell all process 
-@Client.on_message(filters.private & filters.command("restart") & filters.user(Config.ADMIN))
+@Client.on_message(filters.private & filters.command("restart") & admin_only)
 async def restart_bot(b, m):
     await m.reply_text("🔄 __ʀᴇꜱᴛᴀʀᴛɪɴɢ.....__")
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 #Update Form github 
-@Client.on_message(filters.command("update") & filters.user(Config.ADMIN))
+@Client.on_message(filters.command("update") & admin_only)
 async def update_bot(c, m):
     try:
         os.system("git pull")
@@ -58,7 +59,7 @@ async def update_bot(c, m):
     except Exception as e:
         await m.reply(e)
 
-@Client.on_message(filters.command("broadcast") & filters.user(Config.ADMIN) & filters.reply)
+@Client.on_message(filters.command("broadcast") & admin_only & filters.reply)
 async def broadcast_handler(bot: Client, m: Message):
     await bot.send_message(Config.LOG_CHANNEL, f"{m.from_user.mention} or {m.from_user.id} Iꜱ ꜱᴛᴀʀᴛᴇᴅ ᴛʜᴇ Bʀᴏᴀᴅᴄᴀꜱᴛ......")
     all_users = await db.get_all_users()
@@ -83,7 +84,7 @@ async def broadcast_handler(bot: Client, m: Message):
     completed_in = datetime.timedelta(seconds=int(time.time() - start_time))
     await sts_msg.edit(f"Bʀᴏᴀᴅᴄᴀꜱᴛ Cᴏᴍᴩʟᴇᴛᴇᴅ: \nCᴏᴍᴩʟᴇᴛᴇᴅ Iɴ `{completed_in}`.\n\nTᴏᴛᴀʟ Uꜱᴇʀꜱ {total_users}\nCᴏᴍᴩʟᴇᴛᴇᴅ: {done} / {total_users}\nSᴜᴄᴄᴇꜱꜱ: {success}\nFᴀɪʟᴇᴅ: {failed}")
            
-@Client.on_message(filters.command("addadmin") & filters.private & filters.user(Config.ADMIN))
+@Client.on_message(filters.command("addadmin") & filters.private & admin_only)
 async def add_admin_cmd(bot, message):
     if len(message.command) < 2:
         return await message.reply("Usage: `/addadmin <user_id>`")
@@ -96,7 +97,7 @@ async def add_admin_cmd(bot, message):
     except:
         await message.reply("Invalid user ID.")
 
-@Client.on_message(filters.command("removeadmin") & filters.private & filters.user(Config.ADMIN))
+@Client.on_message(filters.command("removeadmin") & filters.private & admin_only)
 async def remove_admin_cmd(bot, message):
     if len(message.command) < 2:
         return await message.reply("Usage: `/removeadmin <user_id>`")
@@ -109,7 +110,7 @@ async def remove_admin_cmd(bot, message):
     except:
         await message.reply("Invalid user ID.")
 
-@Client.on_message(filters.command("admins") & filters.private & filters.user(Config.ADMIN))
+@Client.on_message(filters.command("admins") & filters.private & admin_only)
 async def list_admins_cmd(bot, message):
     env_admins = Config.ADMIN
     db_admins = await db.get_db_admins()
